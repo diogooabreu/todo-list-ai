@@ -27,15 +27,19 @@ The project uses a monorepo archicteture. The AI agent must be adhere to the fol
 ### Entities
 - user
 - task
+- category
 
 ### API routes
 - `POST /auth/register` e `POST /auth/login`
 - `GET /tasks`, `POST /tasks`, `PATCH /tasks/:id`, `DELETE /tasks/:id`
+- `GET /categories`, `POST /categories`, `PATCH /categories/:id`, `DELETE /categories/:id`
 
 ## Data modeling
 ```
 erDiagram
     USER ||--o{ TASK : "possui"
+    USER ||--o{ CATEGORY : "possui"
+    CATEGORY ||--o{ TASK : "pertence"
     USER {
         string id
         string email
@@ -46,6 +50,12 @@ erDiagram
         string title
         string description
         boolean completed
+        string userId
+        string categoryId
+    }
+    CATEGORY {
+        string id
+        string name
         string userId
     }
 ```
