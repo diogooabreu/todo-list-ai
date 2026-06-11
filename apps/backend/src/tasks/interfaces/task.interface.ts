@@ -4,4 +4,5 @@ export interface ITask {
   description?: string;
   completed: boolean;
   userId: string;
+  categoryId?: string;
 }
