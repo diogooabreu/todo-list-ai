@@ -24,6 +24,7 @@ Monorepo for a full-stack task management app following **Spec-Driven Developmen
 |------------|--------------------------------|
 | Backend    | NestJS 11, TypeScript, Prisma |
 | Database   | PostgreSQL                     |
+| Validation | class-validator, class-transformer |
 | Frontend   | React                          |
 
 ## Entity Model
@@ -53,7 +54,9 @@ Global prefix: `app/v1` (defined in `main.ts`)
 - Relative imports only (no `baseUrl` / path aliases)
 - Comments must not be added to generated code
 - Services contain business logic; controllers handle HTTP concerns
-- DTOs for input validation; entities/interfaces for data shape
+- DTOs for input validation with class-validator decorators and custom error messages; entities/interfaces for data shape
+- Global ValidationPipe in `main.ts` with `whitelist`, `forbidNonWhitelisted`, and `transform` enabled
+- Route params are UUID strings — no ParseIntPipe needed
 
 ## Git Workflow
 
