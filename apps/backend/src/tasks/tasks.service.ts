@@ -1,22 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Injectable()
 export class TasksService {
   findAll() {
-    return;
+    return [];
   }
 
   create(createTaskDto: CreateTaskDto) {
-    return;
+    return createTaskDto;
   }
 
   update(id: string, updateTaskDto: UpdateTaskDto) {
-    return;
+    throw new NotFoundException(`Task with id '${id}' not found`);
   }
 
   remove(id: string) {
-    return;
+    throw new NotFoundException(`Task with id '${id}' not found`);
   }
 }
