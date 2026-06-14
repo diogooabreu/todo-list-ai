@@ -17,7 +17,9 @@ export class CategoriesController {
 
   @Post()
   create(@Body() createCategoryDto: CreateCategoryDto) {
-    return this.categoriesService.create(createCategoryDto);
+    // TODO: extract userId from JWT token once auth is implemented
+    const userId = '00000000-0000-0000-0000-000000000000';
+    return this.categoriesService.create(createCategoryDto, userId);
   }
 
   @Get()
