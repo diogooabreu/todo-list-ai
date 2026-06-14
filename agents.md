@@ -60,6 +60,12 @@ Global prefix: `app/v1` (defined in `main.ts`)
 - Global response format: `ResponseInterceptor` wraps 2xx responses in `{ success: true, payload: data }`
 - Global exception filters: `HttpExceptionFilter` for known HTTP errors, `AllExceptionsFilter` as fallback for unknown errors — both return `{ success: false, statusCode, message[], timestamp, path }`
 - Route params are UUID strings — no ParseIntPipe needed
+- `@nestjs/config` with `ConfigModule.forRoot({ isGlobal: true })` loads `.env` from `apps/backend/`
+- `PrismaModule` is `@Global()` — provides `PrismaService` to all modules without re-importing
+- Prisma v7 with Driver Adapter (`@prisma/adapter-pg`) — `PrismaClient` receives the adapter via constructor, `DATABASE_URL` comes from `ConfigService`
+- Prisma schema and config live in `apps/backend/prisma/` — migrations and client generation run from `apps/backend/`
+- Prisma errors with code `P2025` (record not found) are caught in services and re-thrown as `NotFoundException`
+- Foreign keys (`userId`, `categoryId`) are NEVER accepted from client DTOs — they are set server-side from the authenticated user context or resolved from other entities
 
 ## Git Workflow
 

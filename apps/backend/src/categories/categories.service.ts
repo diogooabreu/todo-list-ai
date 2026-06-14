@@ -4,12 +4,13 @@ import { UpdateCategoryDto } from './dto/update-category.dto';
 
 @Injectable()
 export class CategoriesService {
-  create(createCategoryDto: CreateCategoryDto) {
-    return 'This action adds a new category';
+  create(createCategoryDto: CreateCategoryDto, userId: string) {
+    // TODO: implement with Prisma once Category model is added to schema
+    return { ...createCategoryDto, userId };
   }
 
   findAll() {
-    return `This action returns all categories`;
+    return [];
   }
 
   findOne(id: string) {

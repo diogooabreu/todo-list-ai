@@ -22,7 +22,9 @@ export class TasksController {
 
   @Post()
   create(@Body() createTaskDto: CreateTaskDto) {
-    return this.tasksService.create(createTaskDto);
+    // TODO: extract userId from JWT token once auth is implemented
+    const userId = '00000000-0000-0000-0000-000000000000';
+    return this.tasksService.create(createTaskDto, userId);
   }
 
   @Patch(':id')
