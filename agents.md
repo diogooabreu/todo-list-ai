@@ -56,6 +56,9 @@ Global prefix: `app/v1` (defined in `main.ts`)
 - Services contain business logic; controllers handle HTTP concerns
 - DTOs for input validation with class-validator decorators and custom error messages; entities/interfaces for data shape
 - Global ValidationPipe in `main.ts` with `whitelist`, `forbidNonWhitelisted`, and `transform` enabled
+- Global middleware: `LoggerMiddleware` logs all requests to console
+- Global response format: `ResponseInterceptor` wraps 2xx responses in `{ success: true, payload: data }`
+- Global exception filters: `HttpExceptionFilter` for known HTTP errors, `AllExceptionsFilter` as fallback for unknown errors — both return `{ success: false, statusCode, message[], timestamp, path }`
 - Route params are UUID strings — no ParseIntPipe needed
 
 ## Git Workflow
